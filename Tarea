@@ -1,0 +1,34 @@
+import numpy as np
+import matplotlib.pyplot as plt
+# Función que aproxima pi usando la serie de Leibniz
+def leibniz_pi(n):
+    return 4 * sum((-1)**k / (2*k + 1) for k in range(n))
+# Valor real de pi según numpy
+true_pi = np.pi
+# Diferentes números de iteraciones
+N_values = [10, 100, 1000, 10000]
+# Listas para almacenar errores
+errors_abs = []
+errors_rel = []
+# Cálculo de errores para cada N
+for N in N_values:
+    approx_pi = leibniz_pi(N)
+    # Error absoluto
+    error_abs = abs(true_pi - approx_pi)
+    # Error relativo
+    error_rel = error_abs / true_pi
+    errors_abs.append(error_abs)
+    errors_rel.append(error_rel)
+    print(f"N={N}: Error absoluto={error_abs}, Error relativo={error_rel}")
+# Gráfica de errores
+plt.figure()
+plt.plot(N_values, errors_abs, marker='o', label='Error absoluto')
+plt.plot(N_values, errors_rel, marker='s', label='Error relativo')
+# Escala logarítmica
+plt.xscale('log')
+plt.yscale('log')
+plt.xlabel('N')
+plt.ylabel('Error')
+plt.legend()
+plt.title('Errores en la aproximación de pi')
+plt.show()
