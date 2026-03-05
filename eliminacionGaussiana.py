@@ -1,4 +1,5 @@
 import numpy as np
+
 def gauss_elimination(A, b):
     """
     Resuelve el sistema Ax = b usando eliminación gaussiana
